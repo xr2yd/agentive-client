@@ -50,7 +50,7 @@ export default function Login({ onLogin }: LoginProps) {
         <div className="absolute bottom-10 right-10 w-80 h-80 bg-cyan/5 rounded-full blur-3xl" />
 
         {/* Header */}
-        <div className="z-10 flex items-center">
+        <div className="z-10 flex items-center mb-12 md:mb-16">
           <img
             src="/app/logo-full-light.png"
             alt="Agentive Logo"
@@ -119,7 +119,7 @@ export default function Login({ onLogin }: LoginProps) {
         </div>
 
         {/* Footer */}
-        <div className="z-10 text-xs text-muted mt-8 md:mt-0">
+        <div className="z-10 text-xs text-muted mt-12 md:mt-16">
           © {new Date().getFullYear()} Agentive Inc. All rights reserved. Privacy & Terms.
         </div>
       </div>
