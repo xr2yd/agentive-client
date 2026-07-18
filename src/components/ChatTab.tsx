@@ -47,7 +47,7 @@ export default function ChatTab() {
     setIsTyping(true);
 
     try {
-      const response = await fetch("/api/chat", {
+      const response = await fetch("/app/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
