@@ -45,13 +45,22 @@ export async function POST(request: Request) {
       }),
     });
 
+    const n8nText = await n8nResponse.text();
+    console.log("n8n response status:", n8nResponse.status);
+    console.log("n8n response text:", n8nText);
+
     if (!n8nResponse.ok) {
-      const errorText = await n8nResponse.text();
-      console.error("n8n Webhook error:", errorText);
-      return NextResponse.json({ error: "Failed to fetch response from n8n workflow" }, { status: n8nResponse.status });
+      console.error("n8n Webhook error status:", n8nResponse.status, "body:", n8nText);
+      return NextResponse.json({ error: `Failed to fetch response from n8n: ${n8nText}` }, { status: n8nResponse.status });
     }
 
-    const data = await n8nResponse.json();
+    let data;
+    try {
+      data = JSON.parse(n8nText);
+    } catch (e: any) {
+      console.error("Failed to parse n8n response as JSON:", n8nText);
+      return NextResponse.json({ error: "Invalid JSON response from automation server" }, { status: 500 });
+    }
     const reply = data.text || "I couldn't process that response.";
 
     const response = NextResponse.json({ text: reply });
