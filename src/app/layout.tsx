@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
-import SocialProof from "@/components/SocialProof";
 
 const outfit = Outfit({
   variable: "--font-heading",
@@ -30,7 +29,7 @@ export default function RootLayout({
       lang="id"
       className={`${outfit.variable} ${inter.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col">{children}<SocialProof /></body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
