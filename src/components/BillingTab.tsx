@@ -23,6 +23,11 @@ interface BillingTabProps {
 export default function BillingTab({ daysRemaining, onRenew }: BillingTabProps) {
   const [pageLoading, setPageLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [cardNumber, setCardNumber] = useState("");
+  const [expiry, setExpiry] = useState("");
+  const [cvc, setCvc] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setPageLoading(false), 1000);
@@ -49,11 +54,6 @@ export default function BillingTab({ daysRemaining, onRenew }: BillingTabProps) 
       </div>
     );
   }
-  const [cardNumber, setCardNumber] = useState("");
-  const [expiry, setExpiry] = useState("");
-  const [cvc, setCvc] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
 
   const invoices = [
     { id: "INV-8910", date: "June 13, 2026", amount: "$299.00", status: "Paid" },
