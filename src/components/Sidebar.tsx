@@ -37,17 +37,13 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, isOpen, set
     <>
       {/* Mobile Top Bar */}
       <div className="md:hidden flex items-center justify-between p-4 bg-navy-soft border-b border-border z-30 w-full fixed top-0 left-0">
-        <div className="flex items-center">
-          <img
-            src="/app/logo-full-light.png"
-            alt="Agentive Logo"
-            className="h-7 w-auto object-contain hidden dark:block"
-          />
-          <img
-            src="/app/logo-full-dark.png"
-            alt="Agentive Logo"
-            className="h-7 w-auto object-contain block dark:hidden"
-          />
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
+            <Bot className="w-5 h-5 text-white" />
+          </div>
+          <span className="font-heading font-bold text-lg text-heading">
+            Agentive<span className="text-cyan font-normal">.</span>
+          </span>
         </div>
         <button 
           onClick={() => setIsOpen(!isOpen)}
@@ -67,26 +63,12 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, isOpen, set
           <div>
             {/* Logo Desktop */}
             <div className="hidden md:flex items-center gap-2 mb-8">
-              <img
-                src="/app/logo-icon-light.png"
-                alt="Agentive Icon"
-                className="w-9 h-9 object-contain hidden dark:block"
-              />
-              <img
-                src="/app/logo-icon-dark.png"
-                alt="Agentive Icon"
-                className="w-9 h-9 object-contain block dark:hidden"
-              />
-              <img
-                src="/app/logo-full-light.png"
-                alt="Agentive Logo"
-                className="h-8 w-auto object-contain hidden dark:block"
-              />
-              <img
-                src="/app/logo-full-dark.png"
-                alt="Agentive Logo"
-                className="h-8 w-auto object-contain block dark:hidden"
-              />
+              <div className="w-9 h-9 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-blue/20">
+                <Bot className="w-5.5 h-5.5 text-white" />
+              </div>
+              <span className="font-heading font-bold text-xl tracking-tight text-heading">
+                Agentive<span className="text-cyan font-normal">.</span>
+              </span>
               <div className="ml-auto flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-semibold text-emerald-400 uppercase tracking-wider">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 Live
