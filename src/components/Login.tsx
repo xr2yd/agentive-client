@@ -54,7 +54,7 @@ export default function Login({ onLogin }: LoginProps) {
           <div className="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-blue/20">
             <Bot className="w-6 h-6 text-white" />
           </div>
-          <span className="font-sans font-bold text-2xl tracking-tight text-heading">
+          <span className="font-heading font-bold text-2xl tracking-tight text-heading">
             Agentive<span className="text-cyan font-normal">.</span>
           </span>
         </div>
@@ -67,7 +67,7 @@ export default function Login({ onLogin }: LoginProps) {
             transition={{ duration: 0.5 }}
           >
             <span className="eyebrow mb-6">Client Portal</span>
-            <h1 className="text-4xl md:text-5xl font-sans font-extrabold text-heading tracking-tight leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-heading tracking-tight leading-tight mb-6">
               Empower your business with{" "}
               <span className="gradient-text">Autonomous AI Agents</span>.
             </h1>

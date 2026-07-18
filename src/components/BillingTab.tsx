@@ -1,18 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  CreditCard, 
-  Check, 
-  HelpCircle, 
-  ArrowUpRight, 
-  Lock, 
-  Loader2, 
-  CheckCircle2, 
-  Download, 
+import {
+  CreditCard,
+  Check,
+  HelpCircle,
+  ArrowUpRight,
+  Lock,
+  Loader2,
+  CheckCircle2,
+  Download,
   AlertCircle
 } from "lucide-react";
+import { Skeleton, SkeletonCard } from "./Skeleton";
 
 interface BillingTabProps {
   daysRemaining: number;
@@ -20,7 +21,34 @@ interface BillingTabProps {
 }
 
 export default function BillingTab({ daysRemaining, onRenew }: BillingTabProps) {
+  const [pageLoading, setPageLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setPageLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (pageLoading) {
+    return (
+      <div className="space-y-8">
+        <div>
+          <Skeleton className="h-7 w-64" />
+          <Skeleton className="h-4 w-96 mt-2" />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-6">
+            <Skeleton className="h-64 w-full rounded-2xl" />
+            <div className="space-y-4">
+              <Skeleton className="h-5 w-36" />
+              <Skeleton className="h-40 w-full rounded-2xl" />
+            </div>
+          </div>
+          <Skeleton className="h-64 w-full rounded-2xl" />
+        </div>
+      </div>
+    );
+  }
   const [cardNumber, setCardNumber] = useState("");
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");

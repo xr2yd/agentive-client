@@ -1,17 +1,50 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { 
-  BarChart3, 
-  TrendingUp, 
-  Clock, 
-  CheckCircle2, 
+import {
+  BarChart3,
+  TrendingUp,
+  Clock,
+  CheckCircle2,
   AlertTriangle,
   Info,
   CalendarDays
 } from "lucide-react";
+import { Skeleton, SkeletonCard, SkeletonRow } from "./Skeleton";
 
 export default function ReportsTab() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="space-y-8">
+        <div>
+          <Skeleton className="h-7 w-72" />
+          <Skeleton className="h-4 w-96 mt-2" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {[1,2,3,4].map(i => <SkeletonCard key={i} />)}
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="card p-6 space-y-4">
+            <Skeleton className="h-5 w-48" />
+            <Skeleton className="h-56 w-full" />
+          </div>
+          <div className="card p-6 space-y-4">
+            <Skeleton className="h-5 w-48" />
+            <Skeleton className="h-56 w-full" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // Chart points for 7 days accuracy (y values mapped from 95% to 100%)
   const accuracyPoints = [97.5, 98.0, 97.2, 98.4, 98.2, 98.9, 98.2];
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -74,15 +107,15 @@ export default function ReportsTab() {
           <div className="h-56 w-full relative pt-4">
             <svg className="w-full h-full" viewBox="0 0 500 200" preserveAspectRatio="none">
               {/* Grid Lines */}
-              <line x1="0" y1="50" x2="500" y2="50" stroke="rgba(99,102,241,0.06)" strokeWidth="1" />
-              <line x1="0" y1="100" x2="500" y2="100" stroke="rgba(99,102,241,0.06)" strokeWidth="1" />
-              <line x1="0" y1="150" x2="500" y2="150" stroke="rgba(99,102,241,0.06)" strokeWidth="1" />
+              <line x1="0" y1="50" x2="500" y2="50" stroke="rgba(13,71,255,0.06)" strokeWidth="1" />
+              <line x1="0" y1="100" x2="500" y2="100" stroke="rgba(13,71,255,0.06)" strokeWidth="1" />
+              <line x1="0" y1="150" x2="500" y2="150" stroke="rgba(13,71,255,0.06)" strokeWidth="1" />
 
               {/* Gradient Fill */}
               <defs>
                 <linearGradient id="chartGlow" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#6366f1" stopOpacity="0.25" />
-                  <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
+                  <stop offset="0%" stopColor="#0D47FF" stopOpacity="0.25" />
+                  <stop offset="100%" stopColor="#0D47FF" stopOpacity="0" />
                 </linearGradient>
               </defs>
 
@@ -102,8 +135,8 @@ export default function ReportsTab() {
               />
 
               <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#6366f1" />
-                <stop offset="100%" stopColor="#06b6d4" />
+                <stop offset="0%" stopColor="#0D47FF" />
+                <stop offset="100%" stopColor="#00E5FF" />
               </linearGradient>
 
               {/* Circles on dots */}

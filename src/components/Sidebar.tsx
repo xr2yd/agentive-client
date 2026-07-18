@@ -41,7 +41,7 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, isOpen, set
           <div className="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
             <Bot className="w-5 h-5 text-white" />
           </div>
-          <span className="font-sans font-bold text-lg text-heading">
+          <span className="font-heading font-bold text-lg text-heading">
             Agentive<span className="text-cyan font-normal">.</span>
           </span>
         </div>
@@ -66,7 +66,7 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, isOpen, set
               <div className="w-9 h-9 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-blue/20">
                 <Bot className="w-5.5 h-5.5 text-white" />
               </div>
-              <span className="font-sans font-bold text-xl tracking-tight text-heading">
+              <span className="font-heading font-bold text-xl tracking-tight text-heading">
                 Agentive<span className="text-cyan font-normal">.</span>
               </span>
               <div className="ml-auto flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-semibold text-emerald-400 uppercase tracking-wider">

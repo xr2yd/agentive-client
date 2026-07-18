@@ -10,6 +10,7 @@ import ReportsTab from "@/components/ReportsTab";
 import BookingTab from "@/components/BookingTab";
 import BillingTab from "@/components/BillingTab";
 import SettingsTab from "@/components/SettingsTab";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 interface Booking {
   date: string;
@@ -109,31 +110,47 @@ export default function Home() {
               transition={{ duration: 0.25, ease: "easeInOut" }}
             >
               {activeTab === "overview" && (
-                <OverviewTab 
-                  setActiveTab={setActiveTab} 
-                  daysRemaining={daysRemaining} 
-                />
+                <ErrorBoundary key="overview">
+                  <OverviewTab
+                    setActiveTab={setActiveTab}
+                    daysRemaining={daysRemaining}
+                  />
+                </ErrorBoundary>
               )}
-              {activeTab === "chat" && <ChatTab />}
-              {activeTab === "reports" && <ReportsTab />}
+              {activeTab === "chat" && (
+                <ErrorBoundary key="chat">
+                  <ChatTab />
+                </ErrorBoundary>
+              )}
+              {activeTab === "reports" && (
+                <ErrorBoundary key="reports">
+                  <ReportsTab />
+                </ErrorBoundary>
+              )}
               {activeTab === "booking" && (
-                <BookingTab 
-                  onAddBooking={handleAddBooking} 
-                  bookedMeetings={bookedMeetings} 
-                />
+                <ErrorBoundary key="booking">
+                  <BookingTab
+                    onAddBooking={handleAddBooking}
+                    bookedMeetings={bookedMeetings}
+                  />
+                </ErrorBoundary>
               )}
               {activeTab === "billing" && (
-                <BillingTab 
-                  daysRemaining={daysRemaining} 
-                  onRenew={handleRenew} 
-                />
+                <ErrorBoundary key="billing">
+                  <BillingTab
+                    daysRemaining={daysRemaining}
+                    onRenew={handleRenew}
+                  />
+                </ErrorBoundary>
               )}
               {activeTab === "settings" && (
-                <SettingsTab
-                  apiKeys={apiKeys}
-                  onAddKey={handleAddKey}
-                  onRevokeKey={handleRevokeKey}
-                />
+                <ErrorBoundary key="settings">
+                  <SettingsTab
+                    apiKeys={apiKeys}
+                    onAddKey={handleAddKey}
+                    onRevokeKey={handleRevokeKey}
+                  />
+                </ErrorBoundary>
               )}
             </motion.div>
           </AnimatePresence>

@@ -1,17 +1,19 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { 
-  Bot, 
-  Calendar, 
-  ArrowUpRight, 
-  Zap, 
-  Clock, 
-  CheckCircle2, 
+import {
+  Bot,
+  Calendar,
+  ArrowUpRight,
+  Zap,
+  Clock,
+  CheckCircle2,
   AlertCircle,
   HelpCircle,
   Play
 } from "lucide-react";
+import { Skeleton, SkeletonCard, SkeletonRow } from "./Skeleton";
 
 interface OverviewTabProps {
   setActiveTab: (tab: string) => void;
@@ -19,6 +21,39 @@ interface OverviewTabProps {
 }
 
 export default function OverviewTab({ setActiveTab, daysRemaining }: OverviewTabProps) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="space-y-8">
+        <Skeleton className="h-28 w-full rounded-2xl" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-4">
+            <Skeleton className="h-5 w-48" />
+            <div className="card divide-y divide-border/60 overflow-hidden">
+              {[1,2,3,4,5].map(i => <SkeletonRow key={i} />)}
+            </div>
+          </div>
+          <div className="space-y-6">
+            <Skeleton className="h-5 w-28" />
+            <Skeleton className="h-40 w-full rounded-2xl" />
+            <Skeleton className="h-28 w-full rounded-2xl" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // Mock activity logs
   const activities = [
     {
