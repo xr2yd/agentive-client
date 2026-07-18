@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CalendarCheck,
@@ -20,7 +20,7 @@ interface DummyInteraction {
 }
 
 const interactions: DummyInteraction[] = [
-  // === BOOKING KONSULTASI ===
+  // === BOOKING KONSULTASI (30) ===
   { name: "Sarah", action: "booking sesi konsultasi", detail: "Workflow Optimization", icon: CalendarCheck },
   { name: "Andi", action: "menjadwalkan", detail: "AI Agent Setup Call", icon: CalendarCheck },
   { name: "Rina", action: "booking", detail: "Technical Assessment", icon: CalendarCheck },
@@ -41,8 +41,18 @@ const interactions: DummyInteraction[] = [
   { name: "Gilang", action: "menjadwalkan", detail: "System Audit", icon: CalendarCheck },
   { name: "Hana", action: "booking", detail: "Optimization Review", icon: CalendarCheck },
   { name: "Irfan", action: "menjadwalkan demo", detail: "New Features Overview", icon: CalendarCheck },
+  { name: "Jeni", action: "booking sesi", detail: "Data Pipeline Review", icon: CalendarCheck },
+  { name: "Krisna", action: "menjadwalkan", detail: "Compliance Check", icon: CalendarCheck },
+  { name: "Laras", action: "booking", detail: "Cost Optimization", icon: CalendarCheck },
+  { name: "Miko", action: "menjadwalkan konsultasi", detail: "Architecture Review", icon: CalendarCheck },
+  { name: "Novi", action: "booking sesi", detail: "Disaster Recovery", icon: CalendarCheck },
+  { name: "Oni", action: "menjadwalkan", detail: "Performance Tuning", icon: CalendarCheck },
+  { name: "Pia", action: "booking", detail: "Security Assessment", icon: CalendarCheck },
+  { name: "Raka", action: "menjadwalkan demo", detail: "Platform Overview", icon: CalendarCheck },
+  { name: "Santi", action: "booking sesi", detail: "Integration Planning", icon: CalendarCheck },
+  { name: "Toni", action: "menjadwalkan", detail: "Scale Strategy", icon: CalendarCheck },
 
-  // === AKTIVASI / INTEGRASI ===
+  // === AKTIVASI / INTEGRASI (35) ===
   { name: "Joko", action: "menghubungkan", detail: "Shopify + Agentive", icon: Zap },
   { name: "Kiki", action: "mengaktifkan", detail: "AI Agent Customer Service", icon: Bot },
   { name: "Lina", action: "mengintegrasikan", detail: "HubSpot CRM Pipeline", icon: Zap },
@@ -52,39 +62,69 @@ const interactions: DummyInteraction[] = [
   { name: "Putri", action: "mengintegrasikan", detail: "Google Sheets + CRM", icon: Zap },
   { name: "Qori", action: "mengaktifkan", detail: "AI Agent Inventory", icon: Bot },
   { name: "Rudi", action: "menghubungkan", detail: "WhatsApp API + System", icon: Zap },
-  { name: "Sinta", action: "mengaktifkan", detail: "AI Agent untuk Finance", icon: Bot },
+  { name: "Sinta", action: "mengaktifkan", detail: "AI Agent Finance", icon: Bot },
   { name: "Teguh", action: "mengintegrasikan", detail: "Notion + Gmail + Slack", icon: Zap },
   { name: "Umi", action: "mengaktifkan", detail: "AI Agent Marketing", icon: Bot },
   { name: "Vina", action: "menghubungkan", detail: "ERP + 3 tools lain", icon: Zap },
   { name: "Wahyu", action: "mengaktifkan", detail: "AI Agent Procurement", icon: Bot },
   { name: "Xena", action: "mengintegrasikan", detail: "API Kustom + Webhook", icon: Zap },
-  { name: "Yoga", action: "mengaktifkan", detail: "AI Agent untuk HR", icon: Bot },
+  { name: "Yoga", action: "mengaktifkan", detail: "AI Agent HR", icon: Bot },
   { name: "Zara", action: "menghubungkan", detail: "Database + 4 Aplikasi", icon: Zap },
   { name: "Aji", action: "mengaktifkan", detail: "AI Agent Support", icon: Bot },
   { name: "Bella", action: "mengintegrasikan", detail: "5 Channel Komunikasi", icon: Zap },
   { name: "Candra", action: "mengaktifkan", detail: "AI Agent Analitik", icon: Bot },
+  { name: "Dewi", action: "menghubungkan", detail: "Stripe Payment Webhook", icon: Zap },
+  { name: "Evan", action: "mengaktifkan", detail: "AI Agent Sales", icon: Bot },
+  { name: "Fina", action: "mengintegrasikan", detail: "Mailchimp + CRM", icon: Zap },
+  { name: "Gunawan", action: "mengaktifkan", detail: "AI Agent Monitoring", icon: Bot },
+  { name: "Hilda", action: "menghubungkan", detail: "Google Analytics + API", icon: Zap },
+  { name: "Indra", action: "mengaktifkan", detail: "AI Agent Compliance", icon: Bot },
+  { name: "Jasmine", action: "mengintegrasikan", detail: "Zendesk + Slack", icon: Zap },
+  { name: "Kevin", action: "mengaktifkan", detail: "AI Agent Logistics", icon: Bot },
+  { name: "Lia", action: "menghubungkan", detail: "Custom API + Database", icon: Zap },
+  { name: "Maman", action: "mengaktifkan", detail: "AI Agent Admin", icon: Bot },
+  { name: "Nadia", action: "mengintegrasikan", detail: "Trello + Jira + Slack", icon: Zap },
+  { name: "Oki", action: "mengaktifkan", detail: "AI Agent Research", icon: Bot },
+  { name: "Pram", action: "menghubungkan", detail: "AWS S3 + Agentive", icon: Zap },
+  { name: "Queen", action: "mengaktifkan", detail: "AI Agent Security", icon: Bot },
+  { name: "Rama", action: "mengintegrasikan", detail: "Firebase + BigQuery", icon: Zap },
 
-  // === REPORT & BILLING ===
-  { name: "Dewi", action: "mengunduh", detail: "Laporan Performa Bulanan", icon: BarChart3 },
-  { name: "Eka", action: "memperbarui", detail: "Metode Pembayaran", icon: CreditCard },
-  { name: "Farah", action: "mengenerate", detail: "API Key Baru", icon: KeyRound },
-  { name: "Gita", action: "memperpanjang", detail: "Langganan Pro Plan", icon: CreditCard },
-  { name: "Hari", action: "mengunduh", detail: "Invoice Statement", icon: BarChart3 },
-  { name: "Indah", action: "meng-upgrade ke", detail: "Paket Enterprise", icon: CreditCard },
-  { name: "Jaya", action: "mengenerate", detail: "Webhook Credentials", icon: KeyRound },
-  { name: "Karin", action: "memperbarui", detail: "Pengaturan Agent", icon: KeyRound },
-  { name: "Leo", action: "mengunduh", detail: "Analitik Mingguan", icon: BarChart3 },
-  { name: "Maya", action: "memperpanjang", detail: "SLA Agreement", icon: CreditCard },
-  { name: "Nando", action: "mengenerate", detail: "Integration Token", icon: KeyRound },
-  { name: "Olga", action: "memperbarui", detail: "Billing Information", icon: CreditCard },
-  { name: "Pram", action: "mengunduh", detail: "Tax Report", icon: BarChart3 },
-  { name: "Queen", action: "meng-upgrade ke", detail: "Paket Professional", icon: CreditCard },
-  { name: "Rama", action: "mengenerate", detail: "SSH Key Pair", icon: KeyRound },
-  { name: "Siska", action: "memperbarui", detail: "Notification Preferences", icon: KeyRound },
-  { name: "Tama", action: "mengunduh", detail: "Audit Trail Logs", icon: BarChart3 },
-  { name: "Ulan", action: "memperpanjang", detail: "Domain Subscription", icon: CreditCard },
-  { name: "Vero", action: "mengenerate", detail: "Client Access Key", icon: KeyRound },
-  { name: "Winda", action: "memperbarui", detail: "Team Permissions", icon: KeyRound },
+  // === REPORT & BILLING (35) ===
+  { name: "Uci", action: "mengunduh", detail: "Laporan Performa Bulanan", icon: BarChart3 },
+  { name: "Vicky", action: "memperbarui", detail: "Metode Pembayaran", icon: CreditCard },
+  { name: "Wawan", action: "mengenerate", detail: "API Key Baru", icon: KeyRound },
+  { name: "Yanti", action: "memperpanjang", detail: "Langganan Pro Plan", icon: CreditCard },
+  { name: "Agus", action: "mengunduh", detail: "Invoice Statement", icon: BarChart3 },
+  { name: "Betty", action: "meng-upgrade ke", detail: "Paket Enterprise", icon: CreditCard },
+  { name: "Cahyo", action: "mengenerate", detail: "Webhook Credentials", icon: KeyRound },
+  { name: "Dina", action: "memperbarui", detail: "Pengaturan Agent", icon: KeyRound },
+  { name: "Evan", action: "mengunduh", detail: "Analitik Mingguan", icon: BarChart3 },
+  { name: "Fina", action: "memperpanjang", detail: "SLA Agreement", icon: CreditCard },
+  { name: "Gita", action: "mengenerate", detail: "Integration Token", icon: KeyRound },
+  { name: "Hari", action: "memperbarui", detail: "Billing Information", icon: CreditCard },
+  { name: "Indah", action: "mengunduh", detail: "Tax Report", icon: BarChart3 },
+  { name: "Jaya", action: "meng-upgrade ke", detail: "Paket Professional", icon: CreditCard },
+  { name: "Karin", action: "mengenerate", detail: "SSH Key Pair", icon: KeyRound },
+  { name: "Leo", action: "memperbarui", detail: "Notification Preferences", icon: KeyRound },
+  { name: "Maya", action: "mengunduh", detail: "Audit Trail Logs", icon: BarChart3 },
+  { name: "Nando", action: "memperpanjang", detail: "Domain Subscription", icon: CreditCard },
+  { name: "Olga", action: "mengenerate", detail: "Client Access Key", icon: KeyRound },
+  { name: "Pia", action: "memperbarui", detail: "Team Permissions", icon: KeyRound },
+  { name: "Qori", action: "mengunduh", detail: "Usage Report", icon: BarChart3 },
+  { name: "Raka", action: "memperbarui", detail: "Alamat Penagihan", icon: CreditCard },
+  { name: "Santi", action: "mengenerate", detail: "OAuth Token", icon: KeyRound },
+  { name: "Toni", action: "memperpanjang", detail: "Enterprise Contract", icon: CreditCard },
+  { name: "Ulan", action: "mengunduh", detail: "Cost Analysis", icon: BarChart3 },
+  { name: "Vero", action: "memperbarui", detail: "Tax Settings", icon: CreditCard },
+  { name: "Winda", action: "mengenerate", detail: "Deploy Key", icon: KeyRound },
+  { name: "Xena", action: "memperbarui", detail: "Security Preferences", icon: KeyRound },
+  { name: "Yusuf", action: "mengunduh", detail: "Monthly Summary", icon: BarChart3 },
+  { name: "Zaki", action: "memperpanjang", detail: "Starter Plan", icon: CreditCard },
+  { name: "Ayu", action: "mengenerate", detail: "Read-Only Token", icon: KeyRound },
+  { name: "Bima", action: "memperbarui", detail: "Webhook Endpoints", icon: KeyRound },
+  { name: "Cici", action: "mengunduh", detail: "Error Log Report", icon: BarChart3 },
+  { name: "Doni", action: "memperbarui", detail: "Payment Method", icon: CreditCard },
+  { name: "Elsa", action: "mengenerate", detail: "Service Account Key", icon: KeyRound },
 ];
 
 function getRandomInteraction(excludeIndex?: number): {
@@ -101,27 +141,36 @@ function getRandomInteraction(excludeIndex?: number): {
 export default function SocialProof() {
   const [current, setCurrent] = useState<DummyInteraction | null>(null);
   const [visible, setVisible] = useState(false);
-  const [lastIndex, setLastIndex] = useState<number>(-1);
+  const lastIndexRef = useRef<number>(-1);
+  const hasStartedRef = useRef(false);
 
   const showNext = useCallback(() => {
-    const { interaction, index } = getRandomInteraction(lastIndex);
-    setLastIndex(index);
+    const { interaction, index } = getRandomInteraction(lastIndexRef.current);
+    lastIndexRef.current = index;
     setCurrent(interaction);
     setVisible(true);
 
     setTimeout(() => {
       setVisible(false);
     }, 5000);
-  }, [lastIndex]);
+  }, []);
 
   useEffect(() => {
+    // Prevent re-run on StrictMode double-mount
+    if (hasStartedRef.current) return;
+    hasStartedRef.current = true;
+
+    // Random first delay: 2-8 detik, biar tiap refresh beda
+    const firstDelay = 2000 + Math.random() * 6000;
+
     const initialTimer = setTimeout(() => {
       showNext();
-    }, 3000);
+    }, firstDelay);
 
+    // Random interval: 8-18 detik
     const interval = setInterval(() => {
       showNext();
-    }, 10000 + Math.random() * 8000);
+    }, 8000 + Math.random() * 10000);
 
     return () => {
       clearTimeout(initialTimer);
