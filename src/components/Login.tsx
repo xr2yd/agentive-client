@@ -50,13 +50,17 @@ export default function Login({ onLogin }: LoginProps) {
         <div className="absolute bottom-10 right-10 w-80 h-80 bg-cyan/5 rounded-full blur-3xl" />
 
         {/* Header */}
-        <div className="z-10 flex items-center gap-2">
-          <div className="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-blue/20">
-            <Bot className="w-6 h-6 text-white" />
-          </div>
-          <span className="font-heading font-bold text-2xl tracking-tight text-heading">
-            Agentive<span className="text-cyan font-normal">.</span>
-          </span>
+        <div className="z-10 flex items-center">
+          <img
+            src="/app/logo-full-light.png"
+            alt="Agentive Logo"
+            className="h-8 md:h-10 w-auto object-contain hidden dark:block"
+          />
+          <img
+            src="/app/logo-full-dark.png"
+            alt="Agentive Logo"
+            className="h-8 md:h-10 w-auto object-contain block dark:hidden"
+          />
         </div>
 
         {/* Main Content */}
