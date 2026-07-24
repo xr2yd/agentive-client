@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CalendarDays, Clock, CheckCircle2, ChevronRight, HelpCircle, AlertCircle, Loader2 } from "lucide-react";
+import { CalendarDays, Clock, CheckCircle2, ChevronRight,   Loader2 } from "lucide-react";
 
 interface Booking {
   date: string;

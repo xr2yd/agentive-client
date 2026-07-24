@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   KeyRound, 
-  Settings, 
   Trash2, 
   Copy, 
   Check, 
@@ -12,7 +11,6 @@ import {
   Sliders, 
   Save, 
   Loader2, 
-  CheckCircle2, 
   Bot
 } from "lucide-react";
 
@@ -101,7 +99,7 @@ export default function SettingsTab({ apiKeys, onAddKey, onRevokeKey }: Settings
             <div className="border border-border/80 rounded-xl overflow-hidden divide-y divide-border/60">
               {apiKeys.length === 0 ? (
                 <div className="p-6 text-center text-xs text-muted italic">
-                  No active API keys found. Click "New Key" to generate one.
+                  No active API keys found. Click &quot;New Key&quot; to generate one.
                 </div>
               ) : (
                 apiKeys.map((key) => (

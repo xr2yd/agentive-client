@@ -3,13 +3,12 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
-  BarChart3,
   TrendingUp,
   Clock,
   CheckCircle2,
   AlertTriangle,
 } from "lucide-react";
-import { Skeleton, SkeletonCard, SkeletonRow } from "./Skeleton";
+import { Skeleton, SkeletonCard, } from "./Skeleton";
 
 export default function ReportsTab() {
   const [loading, setLoading] = useState(true);
@@ -44,7 +43,6 @@ export default function ReportsTab() {
   }
 
   // Chart points for 7 days accuracy (y values mapped from 95% to 100%)
-  const accuracyPoints = [97.5, 98.0, 97.2, 98.4, 98.2, 98.9, 98.2];
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   // Bar height percentages for hours saved per week

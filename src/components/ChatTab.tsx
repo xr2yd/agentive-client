@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { randomUUID } from "crypto";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bot, Send, User, Loader2, RefreshCw } from "lucide-react";
 
@@ -35,7 +36,7 @@ export default function ChatTab() {
     if (!text.trim()) return;
 
     const userMsg: Message = {
-      id: Math.random().toString(),
+      id: randomUUID(),
       sender: "user",
       text,
       timestamp: new Date(),
@@ -66,18 +67,18 @@ export default function ChatTab() {
       }
 
       const aiMsg: Message = {
-        id: Math.random().toString(),
+        id: randomUUID(),
         sender: "ai",
         text: data.text,
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, aiMsg]);
-    } catch (err: any) {
+    } catch (err) {
       console.error(err);
       const errorMsg: Message = {
-        id: Math.random().toString(),
+        id: randomUUID(),
         sender: "ai",
-        text: `⚠️ **System Connection Error**: ${err.message || "Could not connect to the AI service. Please try again later."}`,
+        text: `⚠️ **System Connection Error**: ${err instanceof Error ? err.message : "Could not connect to the AI service. Please try again later."}`,
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, errorMsg]);

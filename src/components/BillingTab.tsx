@@ -4,16 +4,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CreditCard,
-  Check,
   HelpCircle,
-  ArrowUpRight,
   Lock,
   Loader2,
   CheckCircle2,
   Download,
-  AlertCircle
 } from "lucide-react";
-import { Skeleton, SkeletonCard } from "./Skeleton";
+import { Skeleton, } from "./Skeleton";
 
 interface BillingTabProps {
   daysRemaining: number;
