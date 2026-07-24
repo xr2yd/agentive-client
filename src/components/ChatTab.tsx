@@ -77,7 +77,7 @@ export default function ChatTab() {
       const errorMsg: Message = {
         id: Math.random().toString(),
         sender: "ai",
-        text: `⚠️ **System Connection Error**: ${err.message || "Could not connect to OpenRouter. Please check your network or API keys."}`,
+        text: `⚠️ **System Connection Error**: ${err.message || "Could not connect to the AI service. Please try again later."}`,
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, errorMsg]);

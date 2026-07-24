@@ -18,7 +18,7 @@ export default function NotFound() {
         </div>
 
         <Link
-          href="/"
+          href="/app"
           className="btn-primary py-2.5 px-6 rounded-xl text-sm flex items-center gap-2 justify-center mx-auto w-fit"
         >
           <Home className="w-4 h-4" />
