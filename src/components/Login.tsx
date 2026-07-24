@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Bot, Shield, Zap, ArrowRight, Lock, Mail, Loader2 } from "lucide-react";
 
@@ -50,16 +51,22 @@ export default function Login({ onLogin }: LoginProps) {
         <div className="absolute bottom-10 right-10 w-80 h-80 bg-cyan/5 rounded-full blur-3xl" />
 
         {/* Header */}
-        <div className="z-10 flex items-center mb-12 md:mb-16">
-          <img
-            src="/app/logo-full-light.png"
+        <div className="z-10 flex items-center">
+          <Image
+            src="/logo-full-light.png"
             alt="Agentive Logo"
+            width={160}
+            height={40}
             className="h-8 md:h-10 w-auto object-contain hidden dark:block"
+            priority
           />
-          <img
-            src="/app/logo-full-dark.png"
+          <Image
+            src="/logo-full-dark.png"
             alt="Agentive Logo"
+            width={160}
+            height={40}
             className="h-8 md:h-10 w-auto object-contain block dark:hidden"
+            priority
           />
         </div>
 

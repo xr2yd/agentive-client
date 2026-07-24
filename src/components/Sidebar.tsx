@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { 
   Bot, 
@@ -12,7 +13,6 @@ import {
   Menu,
   X,
   User,
-  ShieldCheck
 } from "lucide-react";
 
 interface SidebarProps {
@@ -38,15 +38,21 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, isOpen, set
       {/* Mobile Top Bar */}
       <div className="md:hidden flex items-center justify-between p-4 bg-navy-soft border-b border-border z-30 w-full fixed top-0 left-0">
         <div className="flex items-center">
-          <img
-            src="/app/logo-full-light.png"
+          <Image
+            src="/logo-full-light.png"
             alt="Agentive Logo"
+            width={140}
+            height={28}
             className="h-7 w-auto object-contain hidden dark:block"
+            priority
           />
-          <img
-            src="/app/logo-full-dark.png"
+          <Image
+            src="/logo-full-dark.png"
             alt="Agentive Logo"
+            width={140}
+            height={28}
             className="h-7 w-auto object-contain block dark:hidden"
+            priority
           />
         </div>
         <button 
@@ -67,24 +73,32 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, isOpen, set
           <div>
             {/* Logo Desktop */}
             <div className="hidden md:flex items-center gap-2 mb-8">
-              <img
-                src="/app/logo-icon-light.png"
+              <Image
+                src="/logo-icon-light.png"
                 alt="Agentive Icon"
+                width={36}
+                height={36}
                 className="w-9 h-9 object-contain hidden dark:block"
               />
-              <img
-                src="/app/logo-icon-dark.png"
+              <Image
+                src="/logo-icon-dark.png"
                 alt="Agentive Icon"
+                width={36}
+                height={36}
                 className="w-9 h-9 object-contain block dark:hidden"
               />
-              <img
-                src="/app/logo-full-light.png"
+              <Image
+                src="/logo-full-light.png"
                 alt="Agentive Logo"
+                width={128}
+                height={32}
                 className="h-8 w-auto object-contain hidden dark:block"
               />
-              <img
-                src="/app/logo-full-dark.png"
+              <Image
+                src="/logo-full-dark.png"
                 alt="Agentive Logo"
+                width={128}
+                height={32}
                 className="h-8 w-auto object-contain block dark:hidden"
               />
               <div className="ml-auto flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-semibold text-emerald-400 uppercase tracking-wider">

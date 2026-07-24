@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -14,9 +14,30 @@ const inter = Inter({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#07070a",
+};
+
 export const metadata: Metadata = {
   title: "Agentive Client Portal",
   description: "Agentive Client Portal - AI Automation Management & Insights",
+  robots: {
+    index: false,
+    follow: false,
+  },
+  openGraph: {
+    title: "Agentive Client Portal",
+    description: "AI Automation Management & Insights for Agentive clients.",
+    type: "website",
+    siteName: "Agentive",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Agentive Client Portal",
+    description: "AI Automation Management & Insights for Agentive clients.",
+  },
 };
 
 export default function RootLayout({
