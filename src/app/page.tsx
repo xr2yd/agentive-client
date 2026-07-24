@@ -1,16 +1,30 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import Login from "@/components/Login";
 import Sidebar from "@/components/Sidebar";
-import OverviewTab from "@/components/OverviewTab";
-import ChatTab from "@/components/ChatTab";
-import ReportsTab from "@/components/ReportsTab";
-import BookingTab from "@/components/BookingTab";
-import BillingTab from "@/components/BillingTab";
-import SettingsTab from "@/components/SettingsTab";
 import ErrorBoundary from "@/components/ErrorBoundary";
+
+const OverviewTab = dynamic(() => import("@/components/OverviewTab"), {
+  loading: () => <div className="h-96" />,
+});
+const ChatTab = dynamic(() => import("@/components/ChatTab"), {
+  loading: () => <div className="h-96" />,
+});
+const ReportsTab = dynamic(() => import("@/components/ReportsTab"), {
+  loading: () => <div className="h-96" />,
+});
+const BookingTab = dynamic(() => import("@/components/BookingTab"), {
+  loading: () => <div className="h-96" />,
+});
+const BillingTab = dynamic(() => import("@/components/BillingTab"), {
+  loading: () => <div className="h-96" />,
+});
+const SettingsTab = dynamic(() => import("@/components/SettingsTab"), {
+  loading: () => <div className="h-96" />,
+});
 
 interface Booking {
   date: string;

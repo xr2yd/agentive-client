@@ -58,6 +58,8 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, isOpen, set
         <button 
           onClick={() => setIsOpen(!isOpen)}
           className="p-2 text-heading hover:bg-white-5 rounded-lg border border-border"
+          aria-label={isOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
+          aria-expanded={isOpen}
         >
           {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
@@ -68,6 +70,7 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, isOpen, set
         className={`fixed top-0 left-0 bottom-0 z-40 w-64 bg-navy border-r border-border flex flex-col justify-between transition-transform duration-300 md:translate-x-0 pt-16 md:pt-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
+        aria-label="Menu navigasi utama"
       >
         <div className="p-6 flex flex-col h-full justify-between">
           <div>
@@ -119,6 +122,7 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, isOpen, set
                       setActiveTab(item.id);
                       setIsOpen(false); // Close mobile menu
                     }}
+                    aria-current={isActive ? "page" : undefined}
                     className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
                       isActive 
                         ? "bg-blue/10 border border-blue/25 text-white shadow-sm" 

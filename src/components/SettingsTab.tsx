@@ -267,7 +267,12 @@ export default function SettingsTab({ apiKeys, onAddKey, onRevokeKey }: Settings
       {/* Generate API Key Modal Dialog */}
       <AnimatePresence>
         {showKeyModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy/80 backdrop-blur-md p-4">
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-navy/80 backdrop-blur-md p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="settings-modal-title"
+          >
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -276,7 +281,7 @@ export default function SettingsTab({ apiKeys, onAddKey, onRevokeKey }: Settings
             >
               <form onSubmit={handleCreateKey} className="space-y-4">
                 <div className="flex justify-between items-center pb-3 border-b border-border">
-                  <h3 className="font-bold text-heading text-sm">Create API Key</h3>
+                  <h3 id="settings-modal-title" className="font-bold text-heading text-sm">Create API Key</h3>
                   <button 
                     type="button" 
                     onClick={() => setShowKeyModal(false)}

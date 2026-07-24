@@ -196,7 +196,12 @@ export default function BillingTab({ daysRemaining, onRenew }: BillingTabProps) 
       {/* Payment Checkout Modal Overlay */}
       <AnimatePresence>
         {showModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy/80 backdrop-blur-md p-4">
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-navy/80 backdrop-blur-md p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="billing-modal-title"
+          >
             {/* Modal Box */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -208,7 +213,7 @@ export default function BillingTab({ daysRemaining, onRenew }: BillingTabProps) 
                 <form onSubmit={handlePayment} className="space-y-5">
                   <div className="flex justify-between items-center pb-4 border-b border-border">
                     <div>
-                      <h3 className="font-bold text-heading text-base">Renew Subscription</h3>
+                      <h3 id="billing-modal-title" className="font-bold text-heading text-base">Renew Subscription</h3>
                       <p className="text-[10px] text-muted mt-0.5">Extend your active Pro plan for 30 additional days.</p>
                     </div>
                     <button 
