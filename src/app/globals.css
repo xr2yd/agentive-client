@@ -204,3 +204,41 @@
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-muted);
 }
+
+@layer components {
+  .scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(13, 71, 255, 0.3);
+  }
+
+  .cta-pulse {
+    animation: cta-pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes cta-pulse {
+    0%, 100% {
+      box-shadow: 0 0 15px rgba(13, 71, 255, 0.45);
+    }
+    50% {
+      box-shadow: 0 0 28px rgba(13, 71, 255, 0.85);
+    }
+  }
+
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

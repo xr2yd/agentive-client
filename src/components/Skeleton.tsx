@@ -50,20 +50,3 @@ export function SkeletonRow() {
     </div>
   );
 }
-
-export function SkeletonBar({ height }: { height: number }) {
-  return (
-    <div className="flex flex-col items-center w-12 gap-2">
-      <div className="w-8 rounded-t-md bg-white-5 border border-border/40 relative overflow-hidden" style={{ height: `${height}%` }}>
-        <motion.div
-          className="absolute inset-0 -translate-x-full"
-          animate={{ x: ["0%", "100%", "100%"] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-        >
-          <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
-        </motion.div>
-      </div>
-      <Skeleton className="h-2.5 w-10" />
-    </div>
-  );
-}

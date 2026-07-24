@@ -8,8 +8,6 @@ import {
   Clock,
   CheckCircle2,
   AlertTriangle,
-  Info,
-  CalendarDays
 } from "lucide-react";
 import { Skeleton, SkeletonCard, SkeletonRow } from "./Skeleton";
 

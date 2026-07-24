@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot, Send, User, Sparkles, Loader2, RefreshCw } from "lucide-react";
+import { Bot, Send, User, Loader2, RefreshCw } from "lucide-react";
 
 interface Message {
   id: string;
@@ -137,7 +137,7 @@ export default function ChatTab() {
                   ? "bg-blue/10 border-blue/20 text-cyan" 
                   : "gradient-bg border-transparent text-white"
               }`}>
-                {msg.sender === "user" ? <User className="w-4.5 h-4.5" /> : <Bot className="w-4.5 h-4.5" />}
+                {msg.sender === "user" ? <User className="w-[18px] h-[18px]" /> : <Bot className="w-[18px] h-[18px]" />}
               </div>
 
               {/* Message Bubble */}
@@ -158,7 +158,7 @@ export default function ChatTab() {
         {isTyping && (
           <div className="flex items-start gap-3.5 mr-auto">
             <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 gradient-bg text-white">
-              <Bot className="w-4.5 h-4.5 animate-pulse" />
+              <Bot className="w-[18px] h-[18px] animate-pulse" />
             </div>
             <div className="bg-navy-soft border border-border p-4 rounded-2xl rounded-tl-sm flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-muted animate-bounce" style={{ animationDelay: '0ms' }} />

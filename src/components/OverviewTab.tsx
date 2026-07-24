@@ -11,7 +11,6 @@ import {
   CheckCircle2,
   AlertCircle,
   HelpCircle,
-  Play
 } from "lucide-react";
 import { Skeleton, SkeletonCard, SkeletonRow } from "./Skeleton";
 

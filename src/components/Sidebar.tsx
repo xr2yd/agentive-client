@@ -125,7 +125,7 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, isOpen, set
                         : "text-muted hover:text-heading hover:bg-white-5 border border-transparent"
                     }`}
                   >
-                    <Icon className={`w-4.5 h-4.5 ${isActive ? "text-cyan" : ""}`} />
+                    <Icon className={`w-[18px] h-[18px] ${isActive ? "text-cyan" : ""}`} />
                     {item.label}
                   </button>
                 );
@@ -138,7 +138,7 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, isOpen, set
             {/* User Profile Card */}
             <div className="flex items-center gap-3 px-2">
               <div className="w-9 h-9 rounded-full bg-white-5 border border-border flex items-center justify-center text-cyan shadow-inner">
-                <User className="w-4.5 h-4.5" />
+                <User className="w-[18px] h-[18px]" />
               </div>
               <div className="overflow-hidden">
                 <h4 className="text-xs font-semibold text-heading truncate">Acme Corporation</h4>
@@ -151,7 +151,7 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, isOpen, set
               onClick={onLogout}
               className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-red-400 hover:bg-red-500/5 hover:text-red-300 border border-transparent hover:border-red-500/10 transition-all duration-200 cursor-pointer"
             >
-              <LogOut className="w-4.5 h-4.5" />
+              <LogOut className="w-[18px] h-[18px]" />
               Sign Out
             </button>
           </div>
